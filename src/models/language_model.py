@@ -4,7 +4,7 @@ from database.db import db
 
 # Req.1
 class LanguageModel(AbstractModel):
-    _collection = db["language"]
+    _collection = db["languages"]
 
     def __init__(self, data):
         super().__init__(data)
@@ -16,4 +16,10 @@ class LanguageModel(AbstractModel):
     # Req. 3
     @classmethod
     def list_dicts(cls):
-        raise NotImplementedError
+        data = cls.find()
+        list_language = []
+
+        for item in data:
+            list_language.append(item.to_dict())
+
+        return list_language
