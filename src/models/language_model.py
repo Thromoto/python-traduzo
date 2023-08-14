@@ -4,15 +4,14 @@ from database.db import db
 
 # Req.1
 class LanguageModel(AbstractModel):
-    _collection = db["users"]
+    _collection = db["language"]
 
-    def __init__(self, data_dict):
-        self.data = data_dict
+    def __init__(self, data):
+        super().__init__(data)
 
     # Req. 2
     def to_dict(self):
-        return ({"name": self.data.get("name", None),
-                 "acronym": self.data.get("acronym", None)})
+        return {"name": self.data["name"], "acronym": self.data["acronym"]}
 
     # Req. 3
     @classmethod
